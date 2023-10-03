@@ -63,7 +63,7 @@ const Home = () => {
             </div>
 
             <div className="container">
-                <div className="service w-100">
+                <section className="service w-100">
                     <div className="service__item" style={sectionStyle} onClick={() => setFilter(1)}>
                         <img src={ImageKnife} alt="icon" />
                         <h5>Morning</h5>
@@ -80,15 +80,17 @@ const Home = () => {
                         <img src={ImageCup} alt="icon" />
                         <h5>Snack</h5>
                     </div>
-                </div>
+                </section>
 
-                <div className="list__food">
-                    {foods && foods.map((food, index) => <FoodItem key={index} {...food} />)}
-                </div>
+                <section>
+                    <div className="list__food">
+                        {foods && foods.map((food, index) => <FoodItem key={index} {...food} />)}
+                    </div>
 
-                {lastTotal == 8 && <button className='loadmore' onClick={() => setPage(page + 1)}>
-                    {loading ? '読み込み中...' : '記録をもっと見る'}
-                </button>}
+                    {lastTotal == 8 && <button className='loadmore' onClick={() => setPage(page + 1)}>
+                        {loading ? '読み込み中...' : '記録をもっと見る'}
+                    </button>}
+                </section>
             </div>
         </>
     )

@@ -34,7 +34,7 @@ const Column = () => {
     return (
         <>
             <div className="container">
-                <div className="service blog w-100">
+                <section className="service blog w-100">
                     <div className="service__item">
                         <h5>RECOMMENDED <br />COLUMN</h5>
                         <p>オススメ</p>
@@ -51,15 +51,17 @@ const Column = () => {
                         <h5>RECOMMENDED <br />HEALTH</h5>
                         <p>健康</p>
                     </div>
-                </div>
+                </section>
 
-                <div className="list__blog">
-                    {blogs && blogs.map((blog, index) => <BlogItem key={index} {...blog} />)}
-                </div>
+                <section>
+                    <div className="list__blog">
+                        {blogs && blogs.map((blog, index) => <BlogItem key={index} {...blog} />)}
+                    </div>
 
-                {lastTotal == 8 && <button className='loadmore' onClick={() => setPage(page + 1)}>
-                    {loading ? '読み込み中...' : 'コラムをもっと見る'}
-                </button>}
+                    {lastTotal == 8 && <button className='loadmore' onClick={() => setPage(page + 1)}>
+                        {loading ? '読み込み中...' : 'コラムをもっと見る'}
+                    </button>}
+                </section>
             </div>
         </>
     )

@@ -42,7 +42,7 @@ const Record = () => {
     return (
         <>
             <div className="container">
-                <div className="service record w-100">
+                <section className="service record w-100">
                     <div className="service__item" >
                         <div className="">
                             <img src={Image1} alt="icon" />
@@ -73,9 +73,9 @@ const Record = () => {
                         </div>
 
                     </div>
-                </div>
+                </section>
 
-                <div className="exercise chart__record">
+                <section className="exercise chart__record">
                     <div className="exercise__title">
                         <h4>BODY <br />RECORD</h4>
                         <p className="date">2021.05.21</p>
@@ -83,9 +83,9 @@ const Record = () => {
                     <div>
                         <Chart />
                     </div>
-                </div>
+                </section>
 
-                <div className="exercise">
+                <section className="exercise">
                     <div className="exercise__title">
                         <h4>MY <br />EXERCISE</h4>
                         <p className="date">2021.05.21</p>
@@ -94,16 +94,18 @@ const Record = () => {
                     <div className="exercise__content">
                         {exercises && exercises.map((item, index) => <ExerciseItem key={index} {...item} />)}
                     </div>
-                </div>
+                </section>
 
-                <h4 className="diary__title">MY DIARY</h4>
-                <div className="list__diary">
-                    {diaries && diaries.map((diary, index) => <DiaryItem key={index} {...diary} />)}
-                </div>
+                <section>
+                    <h4 className="diary__title">MY DIARY</h4>
+                    <div className="list__diary">
+                        {diaries && diaries.map((diary, index) => <DiaryItem key={index} {...diary} />)}
+                    </div>
 
-                {lastTotal == 8 && <button className='loadmore' onClick={() => setPage(page + 1)}>
-                    {loading ? '読み込み中...' : '自分の日記をもっと見る'}
-                </button>}
+                    {lastTotal == 8 && <button className='loadmore' onClick={() => setPage(page + 1)}>
+                        {loading ? '読み込み中...' : '自分の日記をもっと見る'}
+                    </button>}
+                </section>
             </div>
         </>
     )
