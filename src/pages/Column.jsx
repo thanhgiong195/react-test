@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../untils/api';
 
 import BlogItem from '../components/blog/Item';
 
-const Home = () => {
+const Column = () => {
     const [blogs, setBlogs] = useState([]);
     const [loading, setLoading] = useState(false);
     const [lastTotal, setLastTotal] = useState(0);
@@ -11,8 +11,14 @@ const Home = () => {
     const [page, setPage] = useState(1);
 
     useEffect(() => {
+        document.title = 'My Column';
+    }, []);
+
+    useEffect(() => {
+        if (loading) return;
+
         setLoading(true);
-        axios.get('https://6396a6efa68e43e418083c0a.mockapi.io/food?page=' + page + '&limit=8')
+        axiosInstance.get('food?page=' + page + '&limit=8')
             .then(res => {
                 const newBlogs = [...blogs, ...res.data];
                 setBlogs(newBlogs);
@@ -59,4 +65,4 @@ const Home = () => {
     )
 }
 
-export default Home;
+export default Column;

@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect, } from 'react';
+
+import { Link, useLocation } from 'react-router-dom';
 
 import Logo from '../assets/images/logo.png';
 import IconMemo from '../assets/images/icons/icon_memo.png';
@@ -6,7 +8,6 @@ import IconChallenge from '../assets/images/icons/icon_challenge.png';
 import IconInfo from '../assets/images/icons/icon_info.png';
 import IconMenu from '../assets/images/icons/icon_menu.png';
 import IconClose from '../assets/images/icons/icon_close.png';
-import { Link } from 'react-router-dom';
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -18,6 +19,12 @@ const Header = () => {
             status: 0
         },
     ]);
+
+    const location = useLocation();
+
+    useEffect(() => {
+        setMenuOpen(false);
+    }, [location]);
 
     return (
         <header>
@@ -37,13 +44,13 @@ const Header = () => {
                             </Link>
                         </li>
                         <li className='nav__item'>
-                            <Link to='/record'>
+                            <Link to='/'>
                                 <img src={IconChallenge} alt='icon' />
                                 <span>チャレンジ</span>
                             </Link>
                         </li>
                         <li className='nav__item'>
-                            <Link to='/record'>
+                            <Link to='/'>
                                 <img src={IconInfo} alt='icon' />
                                 <span className='bag_notification'>{notification.length}</span>
                                 <span>お知らせ</span>
@@ -59,30 +66,30 @@ const Header = () => {
                             />
                         </li>
                     </ul>
-                </div>
 
-                {menuOpen &&
-                    <ul className='menu'>
-                        <li>
-                            <Link to='/record'>自分の記録</Link>
-                        </li>
-                        <li>
-                            <Link to='/record'>体重グラフ</Link>
-                        </li>
-                        <li>
-                            <Link to='/record'>目標</Link>
-                        </li>
-                        <li>
-                            <Link to='/record'>選択中のコース</Link>
-                        </li>
-                        <li>
-                            <Link to='/record'>コラム一覧</Link>
-                        </li>
-                        <li>
-                            <Link to='/record'>設定</Link>
-                        </li>
-                    </ul>
-                }
+                    {menuOpen &&
+                        <ul className='menu'>
+                            <li>
+                                <Link to='/record'>自分の記録</Link>
+                            </li>
+                            <li>
+                                <Link to='/'>体重グラフ</Link>
+                            </li>
+                            <li>
+                                <Link to='/'>目標</Link>
+                            </li>
+                            <li>
+                                <Link to='/'>選択中のコース</Link>
+                            </li>
+                            <li>
+                                <Link to='/column'>コラム一覧</Link>
+                            </li>
+                            <li>
+                                <Link to='/'>設定</Link>
+                            </li>
+                        </ul>
+                    }
+                </div>
             </div>
         </header>
     );

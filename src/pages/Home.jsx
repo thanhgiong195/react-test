@@ -1,6 +1,6 @@
 import { Col, Row } from 'antd';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../untils/api';
 
 import Chart from '../components/Chart';
 import FoodItem from '../components/food/Item';
@@ -24,8 +24,14 @@ const Home = () => {
     const [filterType, setFilterType] = useState(null);
 
     useEffect(() => {
+        document.title = 'Home Page';
+    }, []);
+
+    useEffect(() => {
+        if (loading) return;
+
         setLoading(true);
-        axios.get('https://6396a6efa68e43e418083c0a.mockapi.io/food?page=' + page + '&limit=8' + (filterType ? '&type=' + filterType : ''))
+        axiosInstance.get('food?page=' + page + '&limit=8' + (filterType ? '&type=' + filterType : ''))
             .then(res => {
                 const newFoods = [...foods, ...res.data];
                 setFoods(newFoods);
@@ -52,7 +58,7 @@ const Home = () => {
                         <img className='percent' src={ImagePercent} alt="percent" />
                         <img className='food' src={ImageBanner} alt="banner" />
                     </Col>
-                    <Col span={14} className='chart'><Chart /></Col>
+                    <Col span={14} className='chart'><Chart padding={40} /></Col>
                 </Row>
             </div>
 

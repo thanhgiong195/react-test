@@ -24,13 +24,13 @@ const data = {
     labels: ['6月', '7月', '8月', '9月', '10月', '11月', '12月', '1月', '2月', '3月', '4月', '5月'],
     datasets: [
         {
-            data: [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56],
+            data: [88, 85, 60, 68, 62, 58, 68, 65, 58, 55, 50, 56],
             borderColor: '#FFCC21',
             backgroundColor: '#FFCC21',
             size: 10,
         },
         {
-            data: [28, 48, 40, 67, 69, 27, 16, 50, 81, 56, 55, 40],
+            data: [88, 82, 66, 64, 57, 56, 53, 51, 49, 45, 35, 30],
             borderColor: '#8FE9D0',
             backgroundColor: '#8FE9D0',
         },
@@ -39,20 +39,42 @@ const data = {
 
 const options = {
     responsive: true,
+    maintainAspectRatio: false,
+    aspectRatio: 1,
     plugins: {
         legend: {
             display: false,
-            position: 'top',
         },
         title: {
             display: false,
         },
     },
+    scales: {
+        y: {
+            ticks: {
+                display: false,
+            }
+        },
+        x: {
+            ticks: {
+                color: "white",
+                font: {
+                    size: 12,
+                },
+                stepSize: 1,
+                beginAtZero: true
+            }
+        }
+    }
 };
 
-const Chart = () => {
+const Chart = ({ padding }) => {
     return (
-        <Line options={options} data={data} />
+        <Line options={{
+            ...options, layout: {
+                padding: padding || 0,
+            }
+        }} data={data} />
     )
 }
 
