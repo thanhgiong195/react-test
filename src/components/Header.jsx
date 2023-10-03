@@ -11,14 +11,14 @@ import IconClose from '../assets/images/icons/icon_close.png';
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
-    const [notification, setNotification] = useState([
+    const notification = [
         {
             id: 1,
             title: 'タイトル',
             content: '内容',
             status: 0
         },
-    ]);
+    ];
 
     const location = useLocation();
 
